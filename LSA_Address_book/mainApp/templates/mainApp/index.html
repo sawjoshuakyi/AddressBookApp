@@ -1,0 +1,34 @@
+{% comment %} 
+index.html
+----------
+Pre login and post logout page.
+Users can choose to login and register for new account on this page. 
+
+{% endcomment %}
+
+
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'mainApp/style.css' %}">
+</head>
+
+<header>
+	<h1 style= "text-align: center">LSA Address Book Application</h1>
+</header>
+
+<body>
+
+<div id = "mainMenu">
+ <form method="post" class = "mainForm">
+	{% csrf_token %}
+	<h3>Have an account? Login here <a href="/login">Login</a></h3>
+</form> 
+
+<form method="post" class = "mainForm">
+	{% csrf_token %}
+	<p>Don't have an account? <a href="/register"> Register here!</a></p>
+</form>
+</div>
+</body>
+</html>

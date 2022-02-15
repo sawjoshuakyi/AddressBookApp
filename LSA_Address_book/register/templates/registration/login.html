@@ -1,0 +1,22 @@
+{% load static %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'mainApp/style.css' %}">
+</head>
+<body>
+<h1 style= "text-align: center">LSA Address Book Application</h1>
+
+<div id = "mainMenu">
+<form method="post" class = "mainForm">
+	{% csrf_token %}
+    {{ form.as_p }}
+	<button type="submit">Log In</button>
+</form>
+
+<form method="post" class = "mainForm">
+	{% csrf_token %}
+	<p>Don't have an account? <a href="/register">Register here!</a></p>
+</form>
+</div>
+</body>
+</html>

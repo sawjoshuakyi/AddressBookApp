@@ -1,0 +1,34 @@
+{% comment %} 
+create.html
+-----------
+Contact creationg page. 
+Users can fill the forms to create a new contact or choose to go back to view all contacts.
+
+{% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainApp/style.css' %}">
+</head>
+
+<header>
+    <h1 style= "text-align: center">LSA Address Book Application</h1>
+</header>
+
+<body>
+<div id = "mainMenu">
+<form method = "POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" style= "padding: 3px;">Save</button>
+</br></br>
+    <form method="post" class = "mainForm">
+        {% csrf_token %}
+        <h3>Go back to view all contacts<a href="/view">Home</a></h3>
+    </form> 
+</form>
+</div>
+</body>
+</html>

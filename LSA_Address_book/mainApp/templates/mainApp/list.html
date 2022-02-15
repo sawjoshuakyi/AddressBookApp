@@ -1,0 +1,57 @@
+{% comment %} 
+list.html 
+---------
+Users will arrive to this page on two occasions. 
+1. Upon creating a new contact
+2. To view details of an existing contact
+All the details of a contact will be available on this page.
+
+{% endcomment %}
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainApp/style.css' %}">
+</head>
+
+<header>
+    <h1 style= "text-align: center">LSA Address Book Application</h1>
+</header>
+
+<body>
+
+</br>
+<h1>{{ls.name}}</h1>
+<div id = "contact-details">
+{% for contact in items.values %}
+<div id = "contact-details">
+    <li>First Name: {{contact.firstName}}</li>
+    <li>Last Name: {{contact.lastName}}</li>
+    <li>Home Phone Number: {{contact.homephoneNumber}}</li>
+    <li>Work Phone Number: {{contact.workphoneNumber}}</li>
+    <li>Mobile Phone Number: {{contact.mobilephoneNumber}}</li>
+    <li>Email: {{contact.email}}</li>
+    <li>Address: {{contact.address}}</li>
+</div>
+{%endfor%}
+
+<form method = "POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" style= "padding: 3px;">Delete</button>
+</form>
+
+<form method="post" class = "mainForm">
+    {% csrf_token %}
+    <h3>Go back to view all contacts<a href="/view">Home</a></h3>
+</form> 
+
+<form method="post" class = "mainForm">
+    {% csrf_token %}
+    <h3><a href="/logout">Log out</a></h3>
+</form> 
+
+</body>
+</html>

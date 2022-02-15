@@ -1,0 +1,24 @@
+{% comment %} 
+register.html
+-------------
+Registration page for new user. Users will have their own login credentials and will have their own specific data. i.e their own private contact list. 
+
+{% endcomment %}
+
+
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainApp/style.css' %}">
+</head>
+<body>
+<h2>Create Account</h2>
+
+
+<form method="POST">
+	{% csrf_token %} {{form}}
+	<button type="submit">Register</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% comment %} 
+view.html 
+---------
+This is the main page. Users will be greeted with this page when their authentication succeeded.
+Users can search for a contact via any keyword for all fields: firstname, lastname, phonenumber, email, Address
+Users can see all the contacts they have created so far in this page. They can also click on the contact and delete them if they wish to.
+Users can create a new contact. This contact will appear on the view screen upon creation.
+{% endcomment %}
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainApp/style.css' %}">
+</head>
+
+<header>
+    <h1 style= "text-align: center">LSA Address Book Application</h1>
+</header>
+
+<body>
+    <div id = "mainMenu">
+    {% if user.is_authenticated %}
+    <form method="POST" class = "mainForm">
+        {% csrf_token %}
+        {{form}}
+        <h3>Search a contact with any keyword</h3>
+        <button type="submit" style= "padding: 3px;">Search</button>
+        {%for contact in query%}
+        <h3>Search Result: {{contact}}</h3>
+        {%endfor%}
+    </br></br>
+    </form> 
+        <h1>Hi {{ user.username }} ,</h1>
+        <h2>Your contact list,... </h2>
+        {% for contact in user.contactlist.all %}
+        <li> 
+            <a href="/{{contact.id}}">{{ contact.name | title }}</a>
+        </li>
+        {% endfor %}
+        <form method="post" class = "mainForm">
+            {% csrf_token %}
+            <h3>Create a new contact <a href="/create">Create</a></h3>
+        </form> 
+
+        <form method="post" class = "mainForm">
+            {% csrf_token %}
+            <h3><a href="/logout">Log out</a></h3>
+        </form> 
+    {% endif %}
+    </div>
+</body>
+
+</html>
